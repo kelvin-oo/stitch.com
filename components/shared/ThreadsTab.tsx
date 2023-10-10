@@ -12,7 +12,7 @@ interface Result {
   threads: {
     _id: string;
     text: string;
-    parentId: string | null;
+    parentId: string | null; 
     author: {
       name: string;
       image: string;
