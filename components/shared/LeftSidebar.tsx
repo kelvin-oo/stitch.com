@@ -5,7 +5,7 @@ import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { SignOutButton, SignedIn, useAuth } from "@clerk/nextjs";
 
-import { sidebarLinks } from "../../constants";
+import { sidebarLinks } from "@/constants";
 
 const LeftSidebar = () => {
   const router = useRouter();
@@ -15,7 +15,7 @@ const LeftSidebar = () => {
 
   return (
     <section className="custom-scrollbar leftsidebar">
-      <div className="flex w-full flex-1 flex-col gap-15px px-6">
+      <div className="flex w-full flex-1 flex-col gap-6 px-6">
         {sidebarLinks.map((link) => {
           const isActive =
             (pathname.includes(link.route) && link.route.length > 1) ||
@@ -32,11 +32,11 @@ const LeftSidebar = () => {
               <Image
                 src={link.imgURL}
                 alt={link.label}
-                width={15}
-                height={15}
+                width={24}
+                height={24}
               />
 
-              <p className="text-light-1 max-lg:hidden text-sm">{link.label}</p>
+              <p className="text-light-1 max-lg:hidden">{link.label}</p>
             </Link>
           );
         })}
@@ -49,8 +49,8 @@ const LeftSidebar = () => {
               <Image
                 src="/assets/logout.svg"
                 alt="logout"
-                width={15}
-                height={15}
+                width={24}
+                height={24}
               />
 
               <p className="text-light-2 max-lg:hidden">Logout</p>

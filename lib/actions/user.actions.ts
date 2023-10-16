@@ -13,11 +13,10 @@ export async function fetchUser(userId: string) {
   try {
     connectToDB();
 
-    return await User.findOne({ id: userId })
-    //   .populate({
-    //   path: "communities",
-    //   model: Community,
-    // });
+    return await User.findOne({ id: userId }).populate({
+      path: "communities",
+      model: Community,
+    });
   } catch (error: any) {
     throw new Error(`Failed to fetch user: ${error.message}`);
   }
@@ -35,7 +34,7 @@ interface Params {
 export async function updateUser({
   userId,
   bio,
-  name, 
+  name,
   path,
   username,
   image,
@@ -50,7 +49,7 @@ export async function updateUser({
         name,
         bio,
         image,
-        onboarded: true, 
+        onboarded: true,
       },
       { upsert: true }
     );
@@ -72,12 +71,11 @@ export async function fetchUserPosts(userId: string) {
       path: "threads",
       model: Thread,
       populate: [
-        // {
-        //   path: "community",
-        //   model: Community,
-        //   select: "name id image _id",
-        //   Select the "name" and "_id" fields from the "Community" model
-        // },
+        {
+          path: "community",
+          model: Community,
+          select: "name id image _id", // Select the "name" and "_id" fields from the "Community" model
+        },
         {
           path: "children",
           model: Thread,
@@ -183,4 +181,3 @@ export async function getActivity(userId: string) {
     throw error;
   }
 }
-

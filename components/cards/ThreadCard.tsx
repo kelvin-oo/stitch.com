@@ -78,7 +78,7 @@ function ThreadCard({
                   height={24}
                   className="cursor-pointer object-contain"
                 />
-                <Link href={`/threads/${id}`}>
+                <Link href={`/thread/${id}`}>
                   <Image
                     src="/assets/reply.svg"
                     alt="heart"
